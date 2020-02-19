@@ -18,7 +18,10 @@ $(BIN_DIR)/assignment1.o: $(SRC_DIR)/assignment1.cpp
 	$(CC) $(ARGS) -o $(BIN_DIR)/assignment1.o -c $(SRC_DIR)/assignment1.cpp
 
 test_code: tests/testCode.cpp $(BIN_DIR)/assignment1.o
-	$(CC) $(ARGS) -o $(BIN_DIR)/test_code.out tests/testCode.cpp $(BIN_DIR)/assignment1.o
+	$(CC) $(ARGS) -o tests/bin/test_code.out $< $(BIN_DIR)/assignment1.o
+
+test_custom: tests/test_custom.cpp $(BIN_DIR)/assignment1.o
+	$(CC) $(ARGS) -o tests/bin/test_custom.out $< $(BIN_DIR)/assignment1.o
 
 clean:
 	rm -r $(BIN_DIR)/*.out

@@ -4,7 +4,7 @@
  * Created:
  *   2/5/2020, 11:52:22 AM
  * Last edited:
- *   2/5/2020, 12:46:16 PM
+ *   2/19/2020, 11:21:50 AM
  * Auto updated?
  *   Yes
  *
@@ -15,15 +15,9 @@
 #ifndef ASSIGNMENT1_HPP
 #define ASSIGNMENT1_HPP
 
-static std::string day_of_week[] = {
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday"
-};
+#include <string>
+
+
 static int days_in_month[] = {
     31,
     28,
@@ -38,19 +32,8 @@ static int days_in_month[] = {
     30,
     31
 };
-static int reference
-
-struct Date {
-    int year;
-    int month;
-    int day;
-
-    /* Construct the struct with given values */
-    Date(int year, int month, int day);
-};
-
-/* Returns the current time as year, month and day */
-Date now();
+/* The reference epoch is the date 3-1-2000, specified as number of days since 1-1-1900 */
+static int reference_epoch = 36527;
 
 /* Computes how many years old the user is, given the current date (in year, month and day) and the date the user was born (in year, month and day). */
 int yearsOld(int currentYear,int currentMonth,int currentDay,
@@ -58,5 +41,8 @@ int yearsOld(int currentYear,int currentMonth,int currentDay,
 /* Computes how many months old the user is, given the current date (in year, month and day) and the date the user was born (in year, month and day). */
 int monthsOld(int currentYear,int currentMonth,int currentDay,
               int birthYear,int birthMonth,int birthDay);
+
+/* Returns the day of the week for a given date. Computes this based on a reference epoch that is globally defined. */
+int dayOfTheWeek(int birthYear, int birthMonth, int birthDay);
 
 #endif

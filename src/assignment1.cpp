@@ -4,7 +4,7 @@
  * Created:
  *   2/5/2020, 11:56:53 AM
  * Last edited:
- *   2/5/2020, 12:44:35 PM
+ *   2/19/2020, 12:43:22 PM
  * Auto updated?
  *   Yes
  *
@@ -14,6 +14,7 @@
  *   system showing the user's age based on the current and birthdates.
 **/
 
+#include <iostream>
 #include <time.h>
 
 #include "assignment1.hpp"
@@ -21,50 +22,68 @@
 using namespace std;
 
 
-Date::Date(int year, int month, int day) {
-    this->year = year;
-    this->month = month;
-    this->day = day;
-}
+// Date now() {
+//     time_t current_time;
+//     time(&current_time);
 
+//     tm* timePtr = localtime(&current_time);
 
-Date now() {
-    time_t current_time;
-    time(&current_time);
-
-    tm* timePtr = localtime(&current_time);
-
-    return Date(timePtr->tm_year + 1900, timePtr->tm_mon + 1, timePtr->tm_mday);
-}
-
+//     return Date(timePtr->tm_year + 1900, timePtr->tm_mon + 1, timePtr->tm_mday);
+// }
 
 int yearsOld(int currentYear,int currentMonth,int currentDay,
-                          int birthYear,int birthMonth,int birthDay) {
-    int years_old = currentYear - birthYear - 1;
-    // If the month and day allow for it, add a year
-    if (currentMonth >= birthMonth || (currentMonth < birthMonth && currentDay >= birthDay)) {
-        years_old++;
+             int birthYear,int birthMonth,int birthDay) {
+    // First, compute the years passed based on years alone
+    int passed = currentYear - birthYear;
+
+    // If passed is 0, there will never be a case where it isn't
+    if (passed == 0) {
+        return 0;
+    } else if (passed < 0) {
+        return -1 * yearsOld(birthYear, birthMonth, birthDay, currentYear, currentMonth, currentDay);
     }
-    return years_old;
+
+    // However, if the currentMonth & currentDay are before birthMonth and day,
+    //   subtract 1 to compensate
+    if (currentMonth < birthMonth || (currentMonth == birthMonth && currentDay < birthDay)) {
+        passed--;
+    }
+
+    return passed;
 }
 int monthsOld(int currentYear,int currentMonth,int currentDay,
-                           int birthYear,int birthMonth,int birthDay) {
-    // Begin with months passed by just the difference in years
-    int years_old = yearsOld(currentYear, currentMonth, currentDay,
-                             birthYear, birthMonth, birthDay);
-    int months_old = years_old * 12;
+              int birthYear,int birthMonth,int birthDay) {
+    // First, compute the months passed by the amount of years
+    int passed = (currentYear - birthYear) * 12;
 
-    // Append the months that have certainly passed
-    months_old += currentMonth - birthMonth - 1;
-    // If the day allows it, add the final month
-    if (currentDay >= birthDay) {
-        months_old++;
+    // Add the number of months based on the months
+    passed += currentMonth - birthMonth;
+
+    // If passed == 0, we'll never encounter non-0 result
+    // If passed < 0, re-run with the swapped arguments to find out
+    if (passed == 0) {
+        return 0;
+    } else if (passed < 0) {
+        return -1 * monthsOld(birthYear, birthMonth, birthDay, currentYear, currentMonth, currentDay);
     }
-    return months_old;
+
+    // Compensate if the day isn't far enough yet
+    if (currentDay <= birthDay) {
+        passed--;
+    }
+
+    return passed;
 }
 
-int dayOfWeek(int birthYear, int birthMonth, int birthDay) {
-    // First, compute the total number of days gone by
+int daysOld(int currentYear,int currentMonth,int currentDay,
+            int birthYear,int birthMonth,int birthDay) {
+    // Start with the number of months
+    int months = monthsOld(currentYear, currentMonth, currentDay, birthYear, birthMonth, birthDay);
+}
+
+int dayOfTheWeek(int birthYear, int birthMonth, int birthDay) {
+    // First, compute the total number of days gone by from the years since the
+    //   epoch (1-1-1900)
     int days_old = (birthYear - 1900) * 365;
     days_old += (birthYear - 1900) / 4;
     
@@ -76,6 +95,9 @@ int dayOfWeek(int birthYear, int birthMonth, int birthDay) {
     // Add the birthDay
     days_old += birthDay;
 
-    // Now return the day of the week
-    
+    // Compute the difference in days
+    int ddays = days_old - reference_epoch;
+
+    // Return the absolute value + 1 since we want 1-indexed answer
+    return abs(ddays % 7) + 1;
 }
