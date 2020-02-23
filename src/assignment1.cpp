@@ -4,7 +4,7 @@
  * Created:
  *   2/5/2020, 11:56:53 AM
  * Last edited:
- *   2/19/2020, 12:43:22 PM
+ *   2/23/2020, 11:01:31 PM
  * Auto updated?
  *   Yes
  *
@@ -75,29 +75,33 @@ int monthsOld(int currentYear,int currentMonth,int currentDay,
     return passed;
 }
 
-int daysOld(int currentYear,int currentMonth,int currentDay,
-            int birthYear,int birthMonth,int birthDay) {
-    // Start with the number of months
-    int months = monthsOld(currentYear, currentMonth, currentDay, birthYear, birthMonth, birthDay);
-}
-
 int dayOfTheWeek(int birthYear, int birthMonth, int birthDay) {
-    // First, compute the total number of days gone by from the years since the
-    //   epoch (1-1-1900)
-    int days_old = (birthYear - 1900) * 365;
-    days_old += (birthYear - 1900) / 4;
-    
-    // Next, compute the days of the month
-    for (int i = 0; i < birthMonth; i++) {
-        days_old += days_in_month[i];
+    // Our reference days is 1-1-1900, as this is a monday
+
+    // Compute years (and account for leap years)
+    int birth_since_epoch = (birthYear - 1900 - 1) * 365;
+    birth_since_epoch += (birthYear - 1900) / 4;
+
+    // Compensate for dates divisible by 100 but not by 400 (as specified in
+    //   the Gregorian calendar)
+    if (birthYear % 100 == 0 && birthYear % 400 != 0) {
+        birth_since_epoch--;
     }
 
-    // Add the birthDay
-    days_old += birthDay;
+    // However, if the birth year is in a leap year but before the end of
+    //   february, remove 1
+    if (birthYear % 4 == 0 && birthMonth <= 2) {
+        birth_since_epoch--;
+    }
 
-    // Compute the difference in days
-    int ddays = days_old - reference_epoch;
+    // Compute months
+    for (int i = 0; i < birthMonth - 1; i++) {
+        birth_since_epoch += days_in_month[i];
+    }
 
-    // Return the absolute value + 1 since we want 1-indexed answer
-    return abs(ddays % 7) + 1;
+    // Finally add the days
+    birth_since_epoch += birthDay;
+
+    // Return the day % 7, as 1-1-1900 was a monday
+    return birth_since_epoch % 7 + 1;
 }
