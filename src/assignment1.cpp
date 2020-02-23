@@ -4,7 +4,7 @@
  * Created:
  *   2/5/2020, 11:56:53 AM
  * Last edited:
- *   2/23/2020, 11:01:31 PM
+ *   2/23/2020, 11:04:14 PM
  * Auto updated?
  *   Yes
  *
@@ -89,7 +89,7 @@ int dayOfTheWeek(int birthYear, int birthMonth, int birthDay) {
     }
 
     // However, if the birth year is in a leap year but before the end of
-    //   february, remove 1
+    //   february, remove another one
     if (birthYear % 4 == 0 && birthMonth <= 2) {
         birth_since_epoch--;
     }
