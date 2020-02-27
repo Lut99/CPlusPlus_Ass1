@@ -1,21 +1,27 @@
 /* ASSIGNMENT 1.hpp
- *   by Anonymous
+ *   by Tim Müller (11774606)
  *
+ * Assignment 1
+ * 
  * Created:
  *   2/5/2020, 11:52:22 AM
  * Last edited:
- *   2/23/2020, 10:41:27 PM
+ *   2/27/2020, 9:08:00 PM
  * Auto updated?
  *   Yes
  *
  * Description:
  *   Header file for assignment1.cpp.
+ * 
+ * This file is compiled and tested on Ubuntu 18.04 and compiled with g++. See
+ *   the Makefile to see the precise options.
 **/
 
 #ifndef ASSIGNMENT1_HPP
 #define ASSIGNMENT1_HPP
 
 #include <string>
+
 
 static int days_in_month[] = {
     31,

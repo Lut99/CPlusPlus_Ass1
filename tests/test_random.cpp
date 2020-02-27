@@ -1,10 +1,12 @@
 /* TEST RANDOM.cpp
- *   by Lut99
+ *   by Tim Müller (11774606)
  *
+ * Assignment 1
+ * 
  * Created:
  *   2/26/2020, 7:55:17 PM
  * Last edited:
- *   2/27/2020, 8:22:20 PM
+ *   2/27/2020, 9:08:36 PM
  * Auto updated?
  *   Yes
  *
@@ -13,6 +15,9 @@
  *   To validate, we make use of the default date library available in C++.
  *   The percentage printed if for the function it mentions the part of
  *   tests that it succeeded.
+ *
+ * This file is compiled and tested on Ubuntu 18.04 and compiled with g++. See
+ *   the Makefile to see the precise options.
 **/
 
 #include <iostream>

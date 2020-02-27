@@ -1,15 +1,20 @@
 /* TEST YEARS.cpp
- *   by Lut99
+ *   by Tim Müller (11774606)
  *
+ * Assignment 1
+ * 
  * Created:
  *   2/19/2020, 11:27:27 AM
  * Last edited:
- *   2/19/2020, 12:36:57 PM
+ *   2/27/2020, 9:17:54 PM
  * Auto updated?
  *   Yes
  *
  * Description:
  *   In this file, the function yearsOld is tested.
+ *
+ * This file is compiled and tested on Ubuntu 18.04 and compiled with g++. See
+ *   the Makefile to see the precise options.
 **/
 
 #include <iostream>
@@ -114,10 +119,10 @@ int main() {
     ASSERT_TEST(test_years_constant(2019, 3, 1, 0))
     ASSERT_TEST(test_years_constant(2020, 3, 19, 0))
 
-    ASSERT_TEST(test_months_constant(2020, 1, 19, 1))
+    ASSERT_TEST(test_months_constant(2020, 1, 18, 1))
     ASSERT_TEST(test_months_constant(2020, 2, 19, 0))
-    ASSERT_TEST(test_months_constant(2020, 3, 19, -1))
-    ASSERT_TEST(test_months_constant(2019, 1, 19, 13))
-    ASSERT_TEST(test_months_constant(2019, 2, 19, 12))
-    ASSERT_TEST(test_months_constant(2019, 3, 19, 11))
+    ASSERT_TEST(test_months_constant(2020, 3, 20, -1))
+    ASSERT_TEST(test_months_constant(2019, 1, 18, 13))
+    ASSERT_TEST(test_months_constant(2019, 2, 18, 12))
+    ASSERT_TEST(test_months_constant(2019, 3, 18, 11))
 }

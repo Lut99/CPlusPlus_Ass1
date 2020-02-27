@@ -1,16 +1,21 @@
 /* MAIN.cpp
- *   by Lut99
+ *   by Tim Müller (11774606)
  *
+ * Assignment 1
+ * 
  * Created:
  *   2/19/2020, 11:19:01 AM
  * Last edited:
- *   2/27/2020, 9:01:56 PM
+ *   2/27/2020, 9:07:47 PM
  * Auto updated?
  *   Yes
  *
  * Description:
  *   This file contains the supplement code that asks user input and
  *   provides a main function.
+ * 
+ * This file is compiled and tested on Ubuntu 18.04 and compiled with g++. See
+ *   the Makefile to see the precise options.
 **/
 
 #include <iostream>

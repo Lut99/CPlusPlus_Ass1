@@ -1,10 +1,12 @@
 /* ASSIGNMENT 1.cpp
- *   by Anonymous
+ *   by Tim Müller (11774606)
  *
+ * Assignment 1
+ * 
  * Created:
  *   2/5/2020, 11:56:53 AM
  * Last edited:
- *   2/23/2020, 11:04:14 PM
+ *   2/27/2020, 9:07:57 PM
  * Auto updated?
  *   Yes
  *
@@ -12,6 +14,9 @@
  *   This is the file for the first Assignment of the C++
  *   Programmeermethoden course. This assignment focuses on implementing a
  *   system showing the user's age based on the current and birthdates.
+ *
+ * This file is compiled and tested on Ubuntu 18.04 and compiled with g++. See
+ *   the Makefile to see the precise options.
 **/
 
 #include <iostream>
@@ -21,15 +26,6 @@
 
 using namespace std;
 
-
-// Date now() {
-//     time_t current_time;
-//     time(&current_time);
-
-//     tm* timePtr = localtime(&current_time);
-
-//     return Date(timePtr->tm_year + 1900, timePtr->tm_mon + 1, timePtr->tm_mday);
-// }
 
 int yearsOld(int currentYear,int currentMonth,int currentDay,
              int birthYear,int birthMonth,int birthDay) {
