@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.cvc": "c",
+        "ostream": "cpp",
+        "iostream": "cpp"
+    }
+}
